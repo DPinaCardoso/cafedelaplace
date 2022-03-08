@@ -5,29 +5,31 @@ let produittab = [];
 let buttonQuery = document.querySelector(".buttonSupprimé");
  
 
+extraction();
 
+function extraction() {
+    if (JSON.parse(localStorage.getItem("@produit")) == "") {
+        produittab = [];
+        console.log("y en a pas");
+    } else {
+        produittab = JSON.parse(localStorage.getItem("@produit"));
+        console.log("y en a");
+        let nom = localStorage.getItem("nom");
+        let paht = localStorage.getItem("paht");
+        let PrixTTC = localStorage.getItem("PrixTTC");
+        let content = "";
+        let title = "";
 
-if (JSON.parse(localStorage.getItem("@produit")) == "") {
-  produittab = [];
-  console.log("y en a pas");
-} else {
-  produittab = JSON.parse(localStorage.getItem("@produit"));
-  console.log("y en a");
-  let nom = localStorage.getItem("nom");
-  let paht = localStorage.getItem("paht");
-  let PrixTTC = localStorage.getItem("PrixTTC");
-  let content = "";
-  let title = "";
-
-  content += `
+        content += `
             <p> Prix d'achat HT: ${paht}
             <p> Prix de vente TTC: ${PrixTTC}
     
         </p><button class="deleteButton">Supprimer </button>`;
-  title += `
+        title += `
     <p> Nom du produit ${nom}`;
-    detailProduit.innerHTML = content;
-     titreProduit.innerHTML = title;
+        detailProduit.innerHTML = content;
+        titreProduit.innerHTML = title;
+    }
 }
 
 function effacer() {
